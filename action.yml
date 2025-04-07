@@ -1,5 +1,10 @@
 name: "Release Test"
 description: "Create a new scratch org, install the latest production release, and run Apex tests."
+secrets:
+  dev-hub-auth-url:
+    required: true
+  cci-token:
+    required: false
 inputs:
   cumulusci-version:
     description: 'version of CumulusCI to install'
@@ -17,9 +22,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: nimba-actions/run-flow-scratch@v1
+    - uses: nimba-actions/run-flow-scratch@main
       with:
         dev-hub-auth-url: '${{ inputs.dev-hub-auth-url }}'
+        cci-token: '${{ secrets.cci-token }}'
         org-name: '${{ inputs.org-name }}'
         cumulusci-version: '${{ inputs.cumulusci-version }}'
         sfdx-version: '${{ inputs.sfdx-version }}'
