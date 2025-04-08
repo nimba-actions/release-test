@@ -1,11 +1,10 @@
 name: "Release Test"
 description: "Create a new scratch org, install the latest production release, and run Apex tests."
-secrets:
+inputs:
   dev-hub-auth-url:
     required: true
   cci-token:
     required: false
-inputs:
   cumulusci-version:
     description: 'version of CumulusCI to install'
     required: false
